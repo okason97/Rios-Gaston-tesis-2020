@@ -1,0 +1,6 @@
+docker build --build-arg DOCKER_ENV="cpu" --rm -f dockerfiles/tf-py3-jupyter.Dockerfile -t handshape-recognition:cpu .
+docker run -v ${PWD}:/develop -v ${PWD}/results:/tf/results -v ${PWD}/data:/tf/data -v ${PWD}/src:/tf/notebooks --rm -p 6006:6006 -p 8888:8888 handshape-recognition:cpu
+
+
+docker build --build-arg DOCKER_ENV="gpu" --rm -f dockerfiles/tf-py3-jupyter.Dockerfile -t handshape-recognition:gpu .
+docker run -v ${PWD}:/develop -v ${PWD}/results:/tf/results -v ${PWD}/data:/tf/data -v ${PWD}/src:/tf/notebooks --rm -p 6006:6006 -p 8888:8888 --runtime=nvidia handshape-recognition:gpu
